@@ -1,0 +1,14 @@
+// basic variables to customize your game
+#include "zscript/SideScrollerGame.zsc"
+
+// sidescrolling framework
+#include "zscript/SideScrollerHandler.zsc"
+
+// camera
+#include "zscript/SideScrollerCamera.zsc"
+
+// player pawn (movement code goes in here)
+#include "zscript/player/SideScrollerPlayer.zsc"
+
+// the states (animation) for the player
+#include "zscript/player/SideScrollerPlayerStates.zsc"

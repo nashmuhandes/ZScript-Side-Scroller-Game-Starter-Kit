@@ -1,0 +1,10 @@
+GameInfo
+{
+	PlayerClasses = "SideScrollerPlayer"
+	EventHandlers = "SideScrollerHandler"
+}
+
+Map MAP01 "Stage 1"
+{
+	Music = ""
+}

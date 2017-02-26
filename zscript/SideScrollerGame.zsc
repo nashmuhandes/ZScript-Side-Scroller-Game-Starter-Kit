@@ -1,0 +1,4 @@
+// side scroller camera settings
+const CAMERA_DISTANCE = -250;
+const CAMERA_HEIGHT = 80;
+const CAMERA_ANGLE = 90;

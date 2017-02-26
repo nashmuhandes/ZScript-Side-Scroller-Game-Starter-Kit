@@ -1,0 +1,82 @@
+// Animation states for the player
+enum EAnimationStates
+{
+	ANIMSTATE_SPAWN,
+	ANIMSTATE_STAND,
+	ANIMSTATE_WALKING,
+	ANIMSTATE_JUMPING,
+	TOTAL_PLAYER_STATES
+}
+
+// This is the actual player sprite that will be seen and animated in-game.
+extend class SideScrollerPlayer
+{
+	void AnimateSideScrollerPlayer(void)
+	{
+		// retrieve player information
+		bool isOnfloor = bIsOnFloor();
+		double pSpeed = GetMoveSpeed();
+
+		// set direction
+		Scale.Y = spriteSize;
+		if (dir == DIR_Left)
+		{
+			Scale.X = spriteSize;
+		}
+		else if (dir == DIR_Right)
+		{
+			Scale.X = -spriteSize;
+		}
+
+		////////////////////////////////////////////////////////////////////////
+		//
+		// STATES
+		//
+		////////////////////////////////////////////////////////////////////////
+		int StateToPlay;
+		StateLabel stateName[TOTAL_PLAYER_STATES];
+		stateName[0] = "Spawn";
+		stateName[1] = "Stand";
+		stateName[2] = "Walking";
+		stateName[3] = "Jumping";
+
+		// standing still
+		if (isOnFloor && pSpeed == 0)
+		{
+			StateToPlay = ANIMSTATE_STAND;
+		}
+
+		// walking
+		if (isOnFloor && pSpeed > 0)
+		{
+			StateToPlay = ANIMSTATE_WALKING;
+		}
+
+		// jump
+		if (!isOnFloor)
+		{
+			StateToPlay = ANIMSTATE_JUMPING;
+		}
+
+		// set the new animation
+		if (oldState != StateToPlay)
+		{
+			SetStateLabel(stateName[StateToPlay]);
+			oldState = StateToPlay;
+		}
+	}
+
+	States
+	{
+	Spawn:
+	Stand:
+		VKIL A -1;
+		Loop;
+	Walking:
+		VKIL BCDA 5;
+		Loop;
+	Jumping:
+		VKIL E -1;
+		Loop;
+	}
+}

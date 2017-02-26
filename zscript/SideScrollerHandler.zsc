@@ -1,0 +1,40 @@
+class SideScrollerHandler : EventHandler
+{
+	// setup the camera and other spawning stuff here
+	// According to Graf Zahl, BeginPlay on the PlayerPawn is a bit unreliable
+	// so we'll do our setup here in the PlayerEntered EventHandler
+	// Source: https://mantis.zdoom.org/view.php?id=315#c745
+
+	override void PlayerEntered(PlayerEvent e)
+	{
+		let p = SideScrollerPlayer(players[e.PlayerNumber].mo);
+
+		if (p)
+		{
+			// set the player to totally frozen; we will customize the player
+			// movement from scratch
+			players[e.PlayerNumber].cheats |= CF_TOTALLYFROZEN;
+
+			// spawn the camera
+			p.SetupSideScrollerCamera();
+		}
+	}
+
+	// destroy the camera when this level is unloaded
+	// in the case of hub levels, we don't want to spawn extra cameras
+	// when the player returns to this level
+    override void WorldUnloaded(WorldEvent e)
+    {
+		for (int p = 0; p < MAXPLAYERS; p++)
+		{
+			if (playeringame[p])
+			{
+				let px = SideScrollerPlayer(players[p].mo);
+				if (px)
+				{
+					px.DestroyCamera();
+				}
+			}
+		}
+	}
+}

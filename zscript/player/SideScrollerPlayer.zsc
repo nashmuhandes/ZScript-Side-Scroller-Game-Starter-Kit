@@ -1,0 +1,161 @@
+enum EDirection
+{
+	DIR_Left,
+	DIR_Right
+}
+
+const ANGLE_Left = 180.;
+const ANGLE_Right = 0.;
+
+class SideScrollerPlayer : DoomPlayer
+{
+	Default
+	{
+		// player left/right movement speed
+		Player.SideMove 10.0;
+
+		// player jump strength
+		Player.JumpZ 15.0;
+
+		// player sprite size (useful for high res sprites)
+		SideScrollerPlayer.SpriteSize 1.0;
+	}
+
+	// camera actor
+	Actor sideCam;
+
+	// the player's direction
+	bool dir;
+
+	int oldState;
+	int spriteSize;
+	property SpriteSize: spriteSize;
+
+	//===========================================================================
+	//
+	//
+	//
+	//===========================================================================
+
+	bool bIsOnFloor (void)
+	{
+		return Pos.Z == FloorZ || Vel.Z == 0 && !Spawn("Z_CheckIsActorOnFloor", Pos, NO_REPLACE);
+	}
+
+	double GetMoveSpeed (void)
+	{
+		return Vel.Length();
+	}
+
+	//===========================================================================
+	//
+	//
+	//
+	//===========================================================================
+
+	void SetupSideScrollerCamera(void)
+	{
+		// spawn camera
+		sideCam = Spawn("SideScrollerCamera", Pos, NO_REPLACE);
+
+		if (sideCam)
+		{
+			// tell the camera to track this player
+			SideScrollerCamera(sideCam).track = self;
+
+			// change view to the camera
+			SetCamera(sideCam, false);
+		}
+	}
+
+	void DestroyCamera(void)
+	{
+		if (sideCam)
+		{
+			sideCam.Destroy();
+		}
+	}
+
+	//===========================================================================
+	//
+	//
+	//
+	//===========================================================================
+
+	void MoveSideScrollerPlayer(void)
+	{
+		// LEFT/RIGHT MOVEMENT /////////////////////////////////////////////////
+
+		double sideInput = GetPlayerInput(INPUT_SIDEMOVE);
+		double normalizedSideInput;
+
+		/*
+		// You can use the following formula for analog player movement
+		// I have analog movement disabled on purpose
+		double normalizedInput = SideMove1 * sideInput / 10240.;
+		*/
+
+		if (sideInput < 0)
+		{
+			dir = DIR_Left;
+			normalizedSideInput = -SideMove1;
+		}
+		else if (sideInput > 0)
+		{
+			dir = DIR_Right;
+			normalizedSideInput = SideMove1;
+		}
+
+		// set the player's direction
+		if (dir == DIR_Left) Angle = ANGLE_Left;
+		else if (dir == DIR_Right) Angle = ANGLE_Right;
+
+		// move the player
+		Vel.X = normalizedSideInput;
+
+		// JUMPING /////////////////////////////////////////////////////////////
+		if (GetPlayerInput(INPUT_BUTTONS) & BT_JUMP
+			&& !(GetPlayerInput(INPUT_OLDBUTTONS) & BT_JUMP))
+		{
+			Vel.Z += JumpZ;
+		}
+
+	}
+
+	//===========================================================================
+	//
+	//
+	//
+	//===========================================================================
+
+	override void BeginPlay(void)
+	{
+		// make player face right by default
+		dir = DIR_Right;
+	}
+
+	override void Tick(void)
+	{
+		Super.Tick();
+		MoveSideScrollerPlayer();
+		AnimateSideScrollerPlayer();
+	}
+}
+
+class Z_CheckIsActorOnFloor : Actor
+{
+	Default
+	{
+		Radius 8;
+		Height 4;
+		+SOLID
+		+NOTIMEFREEZE
+	}
+
+	States
+	{
+	Spawn:
+		TNT1 A 1;
+		Stop;
+	}
+}
