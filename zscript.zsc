@@ -1,3 +1,5 @@
+version "2.4"
+
 // basic variables to customize your game
 #include "zscript/SideScrollerGame.zsc"
 
