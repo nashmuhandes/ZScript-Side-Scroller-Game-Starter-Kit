@@ -73,7 +73,7 @@ extend class SideScrollerPlayer
 		VKIL A -1;
 		Loop;
 	Walking:
-		VKIL BCDA 5;
+		VKIL BCDA 6;
 		Loop;
 	Jumping:
 		VKIL E -1;
