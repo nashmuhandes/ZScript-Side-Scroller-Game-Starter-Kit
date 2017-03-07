@@ -39,7 +39,7 @@ class SideScrollerPlayer : DoomPlayer
 
 	bool bIsOnFloor (void)
 	{
-		return Pos.Z == FloorZ || Vel.Z == 0 && !Spawn("Z_CheckIsActorOnFloor", Pos, NO_REPLACE);
+		return Pos.Z == FloorZ || Vel.Z == 0 && bOnMObj;
 	}
 
 	double GetMoveSpeed (void)
@@ -114,8 +114,9 @@ class SideScrollerPlayer : DoomPlayer
 		Vel.X = normalizedSideInput;
 
 		// JUMPING /////////////////////////////////////////////////////////////
-		if (GetPlayerInput(INPUT_BUTTONS) & BT_JUMP
+		if ((GetPlayerInput(INPUT_BUTTONS) & BT_JUMP
 			&& !(GetPlayerInput(INPUT_OLDBUTTONS) & BT_JUMP))
+			&& bIsOnFloor())
 		{
 			Vel.Z += JumpZ;
 		}
@@ -139,23 +140,5 @@ class SideScrollerPlayer : DoomPlayer
 		Super.Tick();
 		MoveSideScrollerPlayer();
 		AnimateSideScrollerPlayer();
-	}
-}
-
-class Z_CheckIsActorOnFloor : Actor
-{
-	Default
-	{
-		Radius 8;
-		Height 4;
-		+SOLID
-		+NOTIMEFREEZE
-	}
-
-	States
-	{
-	Spawn:
-		TNT1 A 1;
-		Stop;
 	}
 }
