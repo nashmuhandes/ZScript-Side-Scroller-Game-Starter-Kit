@@ -11,17 +11,10 @@ class SideScrollerPlayer : DoomPlayer
 {
 	Default
 	{
-		// player left/right movement speed
-		Player.SideMove 5.0;
-
-		// player jump strength
-		Player.JumpZ 15.0;
-
-		// player sprite size (useful for high res sprites)
-		SideScrollerPlayer.SpriteSize 1.0;
-
-		// player sprite height
-		Height 56;
+		Player.SideMove PLAYER_MOVE_SPEED;
+		Player.JumpZ PLAYER_JUMP_STRENGTH;
+		SideScrollerPlayer.SpriteSize PLAYER_SPRITE_SCALE;
+		Height PLAYER_HEIGHT;
 	}
 
 	// camera actor

@@ -1,3 +1,15 @@
+// basic player movement properties
+const PLAYER_MOVE_SPEED = 5.0;
+const PLAYER_JUMP_STRENGTH = 15.0;
+const PLAYER_HEIGHT = 56.0;
+
+// player sprite scale
+const PLAYER_SPRITE_SCALE = 1.0;
+
+// player movement tightness
+const PLAYER_ACCELERATE_SPEED = 1.0;
+const PLAYER_DECELERATE_SPEED = 0.9;
+
 // side scroller camera settings
 const CAMERA_DISTANCE = -250;
 const CAMERA_HEIGHT = 80;
