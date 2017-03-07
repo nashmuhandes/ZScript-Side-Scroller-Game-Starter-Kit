@@ -133,11 +133,14 @@ class SideScrollerPlayer : DoomPlayer
 	{
 		// make player face right by default
 		dir = DIR_Right;
+
+		Super.BeginPlay();
 	}
 
 	override void Tick(void)
 	{
 		Super.Tick();
+
 		MoveSideScrollerPlayer();
 		AnimateSideScrollerPlayer();
 	}
