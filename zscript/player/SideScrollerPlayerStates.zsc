@@ -11,6 +11,8 @@ enum EAnimationStates
 // This is the actual player sprite that will be seen and animated in-game.
 extend class SideScrollerPlayer
 {
+	const moveThreshold = 0.05;
+
 	void AnimateSideScrollerPlayer(void)
 	{
 		// retrieve player information
@@ -41,13 +43,13 @@ extend class SideScrollerPlayer
 		stateName[3] = "Jumping";
 
 		// standing still
-		if (isOnFloor && pSpeed == 0)
+		if (isOnFloor && pSpeed <= moveThreshold)
 		{
 			StateToPlay = ANIMSTATE_STAND;
 		}
 
 		// walking
-		if (isOnFloor && pSpeed > 0)
+		if (isOnFloor && pSpeed > moveThreshold)
 		{
 			StateToPlay = ANIMSTATE_WALKING;
 		}

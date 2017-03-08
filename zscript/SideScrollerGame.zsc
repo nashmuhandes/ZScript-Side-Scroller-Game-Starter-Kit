@@ -7,8 +7,9 @@ const PLAYER_HEIGHT = 56.0;
 const PLAYER_SPRITE_SCALE = 1.0;
 
 // player movement tightness
-const PLAYER_ACCELERATE_SPEED = 1.0;
-const PLAYER_DECELERATE_SPEED = 0.9;
+// ranges from 0 to 1
+const PLAYER_ACCELERATE = 1.0;
+const PLAYER_DECELERATE = 0.1;
 
 // side scroller camera settings
 const CAMERA_DISTANCE = -250;

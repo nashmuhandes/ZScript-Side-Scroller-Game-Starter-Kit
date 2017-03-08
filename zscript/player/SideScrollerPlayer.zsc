@@ -23,6 +23,7 @@ class SideScrollerPlayer : DoomPlayer
 	// the player's direction
 	bool dir;
 
+	double vx;
 	int oldState;
 	int spriteSize;
 	property SpriteSize: spriteSize;
@@ -110,8 +111,20 @@ class SideScrollerPlayer : DoomPlayer
 		if (dir == DIR_Left) Angle = ANGLE_Left;
 		else if (dir == DIR_Right) Angle = ANGLE_Right;
 
+		if (sideInput != 0)
+		{
+			if (sideInput > 0) vx += PLAYER_ACCELERATE;
+			else if (sideInput < 0) vx -= PLAYER_ACCELERATE;
+			vx = Clamp(vx, -SideMove1, SideMove1);
+
+		}
+		else if (sideInput == 0)
+		{
+			vx *= PLAYER_DECELERATE;
+		}
+
 		// move the player
-		Vel.X = normalizedSideInput;
+		Vel.X = vx;
 
 		// JUMPING /////////////////////////////////////////////////////////////
 		if ((GetPlayerInput(INPUT_BUTTONS) & BT_JUMP
