@@ -8,7 +8,6 @@ class SideScrollerHandler : EventHandler
 	override void PlayerEntered(PlayerEvent e)
 	{
 		let p = SideScrollerPlayer(players[e.PlayerNumber].mo);
-
 		if (p)
 		{
 			// set the player to totally frozen; we will customize the player

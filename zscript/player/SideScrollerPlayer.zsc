@@ -12,7 +12,6 @@ class SideScrollerPlayer : DoomPlayer
 	Default
 	{
 		Player.SideMove PLAYER_MOVE_SPEED;
-		Player.JumpZ PLAYER_JUMP_STRENGTH;
 		SideScrollerPlayer.SpriteSize PLAYER_SPRITE_SCALE;
 		Height PLAYER_HEIGHT;
 	}
@@ -24,6 +23,8 @@ class SideScrollerPlayer : DoomPlayer
 	bool dir;
 
 	double vx;
+	double j;
+	bool jumping, falling;
 	int oldState;
 	int spriteSize;
 	property SpriteSize: spriteSize;
@@ -127,13 +128,36 @@ class SideScrollerPlayer : DoomPlayer
 		Vel.X = vx;
 
 		// JUMPING /////////////////////////////////////////////////////////////
+
 		if ((GetPlayerInput(INPUT_BUTTONS) & BT_JUMP
 			&& !(GetPlayerInput(INPUT_OLDBUTTONS) & BT_JUMP))
 			&& bIsOnFloor())
 		{
-			Vel.Z += JumpZ;
+			jumping = true;
 		}
 
+		if (jumping && !(GetPlayerInput(INPUT_BUTTONS) & BT_JUMP) && !bIsOnFloor())
+		{
+			jumping = false;
+			falling = true;
+			j = 0;
+		}
+
+		if (jumping && j < PLAYER_JUMP_STRENGTH_MAX && !falling && Pos.Z < (CeilingZ - PLAYER_HEIGHT))
+		{
+			j += 1.0;
+			Vel.Z = PLAYER_JUMP_STRENGTH;
+		}
+		else
+		{
+			jumping = false;
+		}
+
+		if (bIsOnFloor())
+		{
+			j = 0;
+			falling = false;
+		}
 	}
 
 	//===========================================================================
@@ -144,6 +168,11 @@ class SideScrollerPlayer : DoomPlayer
 
 	override void BeginPlay(void)
 	{
+		vx = 0;
+		j = 0;
+		//jumping = false;
+		//falling = false;
+
 		// make player face right by default
 		dir = DIR_Right;
 
