@@ -1,24 +1,26 @@
-// player movement speed
+// Player movement speed
 const PLAYER_MOVE_SPEED = 5.0;
 
-// how fast the player jumps
+// How fast the player jumps
 const PLAYER_JUMP_STRENGTH = 8.0;
 
-// how high the player can jump, before starting to fall
+// How high the player can jump, before starting to fall
 const PLAYER_JUMP_STRENGTH_MAX = 12;
 
-// player collision box height
+// Player collision box height
+// (You can also set an absolute value for the crouch height)
 const PLAYER_HEIGHT = 56.0;
+const PLAYER_CROUCH_HEIGHT = PLAYER_HEIGHT / 2;
 
-// player sprite scale
+// Player sprite scale (use a smaller number for high res sprites)
 const PLAYER_SPRITE_SCALE = 1.0;
 
-// player movement tightness
-// ranges from 0 to 1
+// Player movement tightness
+// Ranges from 0 to 1
 const PLAYER_ACCELERATE = 1.0;
 const PLAYER_DECELERATE = 0.1;
 
-// side scroller camera settings
+// Side scroller camera settings
 const CAMERA_DISTANCE = -250;
 const CAMERA_HEIGHT = 80;
 const CAMERA_ANGLE = 90;

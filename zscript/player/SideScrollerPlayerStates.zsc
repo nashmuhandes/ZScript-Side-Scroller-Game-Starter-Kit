@@ -5,6 +5,7 @@ enum EAnimationStates
 	ANIMSTATE_STAND,
 	ANIMSTATE_WALKING,
 	ANIMSTATE_JUMPING,
+	ANIMSTATE_CROUCHING,
 	TOTAL_PLAYER_STATES
 }
 
@@ -18,6 +19,7 @@ extend class SideScrollerPlayer
 		// retrieve player information
 		bool isOnfloor = bIsOnFloor();
 		double pSpeed = GetMoveSpeed();
+		bool isCrouching = bIsCrouching;
 
 		// set direction
 		Scale.Y = spriteSize;
@@ -41,6 +43,7 @@ extend class SideScrollerPlayer
 		stateName[1] = "Stand";
 		stateName[2] = "Walking";
 		stateName[3] = "Jumping";
+		stateName[4] = "Crouching";
 
 		// standing still
 		if (isOnFloor && pSpeed <= moveThreshold)
@@ -58,6 +61,12 @@ extend class SideScrollerPlayer
 		if (!isOnFloor)
 		{
 			StateToPlay = ANIMSTATE_JUMPING;
+		}
+
+		// crouching
+		if (isCrouching)
+		{
+			StateToPlay = ANIMSTATE_CROUCHING;
 		}
 
 		// set the new animation
@@ -79,6 +88,9 @@ extend class SideScrollerPlayer
 		Loop;
 	Jumping:
 		VKIL E -1;
+		Loop;
+	Crouching:
+		VKIL F -1;
 		Loop;
 	}
 }
