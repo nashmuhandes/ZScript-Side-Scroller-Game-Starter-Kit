@@ -1,16 +1,16 @@
 version "2.4"
 
 // Basic variables to customize player
-#include "zscript/SideScrollerGame.zsc"
+#include "zscript/SideScrollerGame.zc"
 
 // Side scrolling framework
-#include "zscript/SideScrollerHandler.zsc"
+#include "zscript/SideScrollerHandler.zc"
 
 // Camera
-#include "zscript/SideScrollerCamera.zsc"
+#include "zscript/SideScrollerCamera.zc"
 
 // Player Pawn (movement code goes in here)
-#include "zscript/player/SideScrollerPlayer.zsc"
+#include "zscript/player/SideScrollerPlayer.zc"
 
 // The states (animation) for the player
-#include "zscript/player/SideScrollerPlayerStates.zsc"
+#include "zscript/player/SideScrollerPlayerStates.zc"
