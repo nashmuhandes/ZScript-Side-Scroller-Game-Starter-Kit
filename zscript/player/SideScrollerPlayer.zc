@@ -165,10 +165,13 @@ class SideScrollerPlayer : DoomPlayer
 			bIsJumping = true;
 		}
 
-		if (bIsJumping && !(GetPlayerInput(INPUT_BUTTONS) & BT_JUMP) && !bIsOnFloor())
+		if (PLAYER_JUMP_VARIABLE == 1)
 		{
-			bIsJumping = false;
-			bIsFalling = true;
+			if (bIsJumping && !(GetPlayerInput(INPUT_BUTTONS) & BT_JUMP) && !bIsOnFloor())
+			{
+				bIsJumping = false;
+				bIsFalling = true;
+			}
 		}
 
 		if (bIsJumping && jumpCounter < PLAYER_JUMP_HEIGHT_MAX && !bIsFalling && Pos.Z < (CeilingZ - PLAYER_HEIGHT))

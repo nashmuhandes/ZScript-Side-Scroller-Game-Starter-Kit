@@ -7,6 +7,9 @@ const PLAYER_JUMP_STRENGTH = 8.0;
 // How high the player can jump, before starting to fall
 const PLAYER_JUMP_HEIGHT_MAX = 12;
 
+// Allow variable height jumping (0 to disable)
+const PLAYER_JUMP_VARIABLE = 1;
+
 // Player collision box height
 // (You can also set an absolute value for the crouch height)
 const PLAYER_HEIGHT = 56.0;
