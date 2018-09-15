@@ -15,7 +15,7 @@ class SideScrollerHandler : EventHandler
 			players[e.PlayerNumber].cheats |= CF_TOTALLYFROZEN;
 
 			// spawn the camera
-			p.SetupSideScrollerCamera();
+			p.SpawnCamera();
 		}
 	}
 
@@ -24,14 +24,15 @@ class SideScrollerHandler : EventHandler
 	// when the player returns to this level
     override void WorldUnloaded(WorldEvent e)
     {
-		for (int p = 0; p < MAXPLAYERS; p++)
+		for (int pn = 0; pn < MAXPLAYERS; pn++)
 		{
-			if (playeringame[p])
+			if (playeringame[pn])
 			{
-				let px = SideScrollerPlayer(players[p].mo);
-				if (px)
+				let p = SideScrollerPlayer(players[pn].mo);
+				if (p)
 				{
-					px.DestroyCamera();
+					// destroy the camera
+					p.DestroyCamera();
 				}
 			}
 		}

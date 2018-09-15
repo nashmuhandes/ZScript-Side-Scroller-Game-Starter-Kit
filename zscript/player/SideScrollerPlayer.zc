@@ -53,7 +53,7 @@ class SideScrollerPlayer : DoomPlayer
 	//
 	//===========================================================================
 
-	void SetupSideScrollerCamera(void)
+	void SpawnCamera(void)
 	{
 		// spawn camera
 		sideCam = SideScrollerCamera(Spawn("SideScrollerCamera", Pos, NO_REPLACE));
