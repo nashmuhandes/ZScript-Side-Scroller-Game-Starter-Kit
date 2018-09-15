@@ -1,16 +1,16 @@
 class SideScrollerCamera : SecurityCamera
 {
 	// the player to track/scroll to
-	SideScrollerPlayer track;
+	SideScrollerPlayer plr;
 
 	override void Tick(void)
 	{
 		// position and point the camera to the player
-		if (track)
+		if (plr)
 		{
-			double cx = track.Pos.X;
-			double cy = track.Pos.Y + CAMERA_DISTANCE;
-			double cz = track.Pos.Z + CAMERA_HEIGHT;
+			double cx = plr.Pos.X;
+			double cy = plr.Pos.Y + CAMERA_DISTANCE;
+			double cz = plr.Pos.Z + CAMERA_HEIGHT;
 			Vector3 camPos = (cx, cy, cz);
 			SetOrigin(camPos, true);
 			Angle = CAMERA_ANGLE;

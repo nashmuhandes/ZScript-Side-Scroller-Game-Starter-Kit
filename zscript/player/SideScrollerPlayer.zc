@@ -18,7 +18,7 @@ class SideScrollerPlayer : DoomPlayer
 	}
 
 	// camera actor
-	Actor sideCam;
+	SideScrollerCamera sideCam;
 
 	// the player's direction
 	bool dir;
@@ -56,12 +56,12 @@ class SideScrollerPlayer : DoomPlayer
 	void SetupSideScrollerCamera(void)
 	{
 		// spawn camera
-		sideCam = Spawn("SideScrollerCamera", Pos, NO_REPLACE);
+		sideCam = SideScrollerCamera(Spawn("SideScrollerCamera", Pos, NO_REPLACE));
 
 		if (sideCam)
 		{
 			// tell the camera to track this player
-			SideScrollerCamera(sideCam).track = self;
+			sideCam.plr = self;
 
 			// change view to the camera
 			SetCamera(sideCam, false);
