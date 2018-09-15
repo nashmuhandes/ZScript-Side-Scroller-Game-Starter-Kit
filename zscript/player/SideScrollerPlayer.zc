@@ -28,7 +28,7 @@ class SideScrollerPlayer : DoomPlayer
 	bool bIsJumping, bIsFalling;
 	bool bIsCrouching;
 	int oldState;
-	int spriteSize;
+	double spriteSize;
 	property SpriteSize: spriteSize;
 
 	//===========================================================================
