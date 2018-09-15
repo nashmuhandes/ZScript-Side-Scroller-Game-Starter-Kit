@@ -86,8 +86,11 @@ class SideScrollerPlayer : DoomPlayer
 	//
 	//===========================================================================
 
-	void MoveSideScrollerPlayer(void)
+	override void MovePlayer(void)
 	{
+		// call vanilla GZDoom player movement method
+		Super.MovePlayer();
+
 		// LEFT/RIGHT MOVEMENT /////////////////////////////////////////////////
 
 		double sideInput = GetPlayerInput(INPUT_SIDEMOVE);
@@ -207,7 +210,6 @@ class SideScrollerPlayer : DoomPlayer
 	{
 		Super.Tick();
 
-		MoveSideScrollerPlayer();
 		AnimateSideScrollerPlayer();
 	}
 }
