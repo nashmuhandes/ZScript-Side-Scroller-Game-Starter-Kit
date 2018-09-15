@@ -14,6 +14,7 @@ class SideScrollerPlayer : DoomPlayer
 		Player.SideMove PLAYER_MOVE_SPEED;
 		SideScrollerPlayer.SpriteSize PLAYER_SPRITE_SCALE;
 		Height PLAYER_HEIGHT;
+		MaxStepHeight PLAYER_STEP_HEIGHT;
 	}
 
 	// camera actor

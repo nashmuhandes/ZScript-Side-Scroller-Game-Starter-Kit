@@ -15,6 +15,10 @@ const PLAYER_CROUCH_HEIGHT = PLAYER_HEIGHT / 2;
 // Player sprite scale (use a smaller number for high res sprites)
 const PLAYER_SPRITE_SCALE = 1.0;
 
+// Adjust player's MaxStepHeight property
+// (0 to prevent "snapping" onto platforms while jumping)
+const PLAYER_STEP_HEIGHT = 0;
+
 // Player movement tightness
 // Ranges from 0 to 1
 const PLAYER_ACCELERATE = 1.0;
