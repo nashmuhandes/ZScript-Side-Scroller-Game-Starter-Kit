@@ -86,6 +86,27 @@ class SideScrollerPlayer : DoomPlayer
 	//
 	//===========================================================================
 
+	override void BeginPlay(void)
+	{
+		vx = 0;
+		jumpCounter = 0;
+		bIsJumping = false;
+		bIsFalling = false;
+		bIsCrouching = false;
+		oldState = 0;
+
+		// make player face right by default
+		dir = DIR_Right;
+
+		Super.BeginPlay();
+	}
+
+	//===========================================================================
+	//
+	//
+	//
+	//===========================================================================
+
 	override void MovePlayer(void)
 	{
 		// call vanilla GZDoom player movement method
@@ -190,21 +211,6 @@ class SideScrollerPlayer : DoomPlayer
 	//
 	//
 	//===========================================================================
-
-	override void BeginPlay(void)
-	{
-		vx = 0;
-		jumpCounter = 0;
-		bIsJumping = false;
-		bIsFalling = false;
-		bIsCrouching = false;
-		oldState = 0;
-
-		// make player face right by default
-		dir = DIR_Right;
-
-		Super.BeginPlay();
-	}
 
 	override void Tick(void)
 	{
