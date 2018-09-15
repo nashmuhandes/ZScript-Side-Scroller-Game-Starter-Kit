@@ -15,6 +15,11 @@ class SideScrollerCamera : SecurityCamera
 			SetOrigin(camPos, true);
 			Angle = CAMERA_ANGLE;
 		}
+		else
+		{
+			// player doesn't exist, destroy the camera
+			Destroy();
+		}
 
 		Super.Tick();
 	}
