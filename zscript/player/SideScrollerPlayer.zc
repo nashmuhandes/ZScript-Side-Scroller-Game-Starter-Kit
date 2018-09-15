@@ -93,7 +93,7 @@ class SideScrollerPlayer : DoomPlayer
 		bIsJumping = false;
 		bIsFalling = false;
 		bIsCrouching = false;
-		oldState = 0;
+		oldState = ANIMSTATE_SPAWN;
 
 		// make player face right by default
 		dir = DIR_Right;
