@@ -171,7 +171,7 @@ class SideScrollerPlayer : DoomPlayer
 			bIsFalling = true;
 		}
 
-		if (bIsJumping && jumpCounter < PLAYER_JUMP_STRENGTH_MAX && !bIsFalling && Pos.Z < (CeilingZ - PLAYER_HEIGHT))
+		if (bIsJumping && jumpCounter < PLAYER_JUMP_HEIGHT_MAX && !bIsFalling && Pos.Z < (CeilingZ - PLAYER_HEIGHT))
 		{
 			jumpCounter++;
 			Vel.Z = PLAYER_JUMP_STRENGTH;
