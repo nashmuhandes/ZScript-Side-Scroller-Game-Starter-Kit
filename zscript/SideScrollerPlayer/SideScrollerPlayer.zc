@@ -40,7 +40,7 @@ class SideScrollerPlayer : DoomPlayer
 	Default
 	{
 		Player.SideMove PLAYER_MOVE_SPEED;
-		SideScrollerPlayer.SpriteSize PLAYER_SPRITE_SCALE;
+		SideScrollerPlayer.SpriteScale PLAYER_SPRITE_SCALE;
 		Height PLAYER_HEIGHT;
 		MaxStepHeight PLAYER_STEP_HEIGHT;
 	}
@@ -56,8 +56,8 @@ class SideScrollerPlayer : DoomPlayer
 	bool bIsJumping, bIsFalling;
 	bool bIsCrouching;
 	int oldState;
-	double spriteSize;
-	property SpriteSize: spriteSize;
+	double spriteScale;
+	property SpriteScale: spriteScale;
 
 	//===========================================================================
 	//

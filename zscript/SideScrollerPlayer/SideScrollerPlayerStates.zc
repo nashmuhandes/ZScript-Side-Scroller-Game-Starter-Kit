@@ -22,14 +22,14 @@ extend class SideScrollerPlayer
 		bool isCrouching = bIsCrouching;
 
 		// set direction
-		Scale.Y = spriteSize;
+		Scale.Y = spriteScale;
 		if (dir == DIR_Left)
 		{
-			Scale.X = spriteSize;
+			Scale.X = spriteScale;
 		}
 		else if (dir == DIR_Right)
 		{
-			Scale.X = -spriteSize;
+			Scale.X = -spriteScale;
 		}
 
 		////////////////////////////////////////////////////////////////////////
