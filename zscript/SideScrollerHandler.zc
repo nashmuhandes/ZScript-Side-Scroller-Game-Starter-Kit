@@ -10,10 +10,6 @@ class SideScrollerHandler : EventHandler
 		let pmo = SideScrollerPlayer(players[e.PlayerNumber].mo);
 		if (pmo)
 		{
-			// set the player to totally frozen; we will customize the player
-			// movement from scratch
-			players[e.PlayerNumber].cheats |= CF_TOTALLYFROZEN;
-
 			// spawn the camera
 			pmo.SpawnCamera();
 		}

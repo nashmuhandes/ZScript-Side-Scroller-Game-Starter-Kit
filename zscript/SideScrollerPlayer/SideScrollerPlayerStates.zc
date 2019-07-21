@@ -17,9 +17,9 @@ extend class SideScrollerPlayer
 	void AnimateSideScrollerPlayer(void)
 	{
 		// retrieve player information
-		bool isOnfloor = bIsOnFloor();
+		bool isOnfloor = OnFloor();
 		double pSpeed = GetMoveSpeed();
-		bool isCrouching = bIsCrouching;
+		bool isCrouching = isCrouching;
 
 		// set direction
 		Scale.Y = spriteScale;
