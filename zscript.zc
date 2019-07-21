@@ -10,10 +10,10 @@ version "4.1.3"
 #include "zscript/SideScrollerCamera.zc"
 
 // Player Pawn (movement code goes in here)
-#include "zscript/player/SideScrollerPlayer.zc"
+#include "zscript/SideScrollerPlayer/SideScrollerPlayer.zc"
 
 // The states (animation) for the player
-#include "zscript/player/SideScrollerPlayerStates.zc"
+#include "zscript/SideScrollerPlayer/SideScrollerPlayerStates.zc"
 
 // HUD
 #include "zscript/SideScrollerHUD.zc"
