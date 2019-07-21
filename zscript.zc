@@ -14,3 +14,6 @@ version "4.1.3"
 
 // The states (animation) for the player
 #include "zscript/player/SideScrollerPlayerStates.zc"
+
+// HUD
+#include "zscript/SideScrollerHUD.zc"

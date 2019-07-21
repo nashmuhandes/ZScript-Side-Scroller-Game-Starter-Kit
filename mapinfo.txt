@@ -1,6 +1,7 @@
 GameInfo
 {
 	PlayerClasses = "SideScrollerPlayer"
+	StatusBarClass = "SideScrollerHUD"
 	EventHandlers = "SideScrollerHandler"
 }
 

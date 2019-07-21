@@ -1,0 +1,19 @@
+class SideScrollerHUD : BaseStatusBar
+{
+	override void Init(void)
+	{
+		Super.Init();
+		SetSize(0, 320, 200);
+	}
+
+	override void Draw(int state, double TicFrac)
+	{
+		Super.Draw (state, TicFrac);
+
+		if (state == HUD_StatusBar || state == HUD_Fullscreen)
+		{
+			// Just an empty HUD. Replace this with your own HUD code.
+			BeginHUD();
+		}
+	}
+}
