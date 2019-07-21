@@ -2,7 +2,7 @@ GameInfo
 {
 	PlayerClasses = "SideScrollerPlayer"
 	StatusBarClass = "SideScrollerHUD"
-	EventHandlers = "SideScrollerHandler"
+	AddEventHandlers = "SideScrollerHandler"
 }
 
 Map MAP01 "Stage 1"
