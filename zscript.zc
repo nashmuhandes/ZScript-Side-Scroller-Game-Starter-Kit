@@ -1,8 +1,5 @@
 version "4.1.3"
 
-// Basic variables to customize player
-#include "zscript/SideScrollerGame.zc"
-
 // Side scrolling framework
 #include "zscript/SideScrollerHandler.zc"
 
