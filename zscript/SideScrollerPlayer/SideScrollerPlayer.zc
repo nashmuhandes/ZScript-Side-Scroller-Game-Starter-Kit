@@ -44,7 +44,6 @@ class SideScrollerPlayer : PlayerPawn
 	SideScrollerCamera cam;
 	bool dir;
 	double vx;
-	int jumpCounter;
 	bool isJumping, isFalling;
 	bool isCrouching;
 	int oldState;
@@ -123,7 +122,6 @@ class SideScrollerPlayer : PlayerPawn
 	override void BeginPlay(void)
 	{
 		vx = 0;
-		jumpCounter = 0;
 		isJumping = false;
 		isFalling = false;
 		isCrouching = false;
