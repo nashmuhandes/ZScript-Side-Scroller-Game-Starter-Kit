@@ -9,16 +9,6 @@ const ANGLE_Right = 0.;
 
 class SideScrollerPlayer : PlayerPawn
 {
-	// Player movement speed
-	const PLAYER_MOVE_SPEED = 5.0;
-
-	// Initial jump strength
-	const PLAYER_JUMP_STRENGTH = 15.0;
-
-	// Player movement tightness
-	// Lower number for tighter movement
-	const PLAYER_DECELERATE = 0.1;
-
 	Default
 	{
 		// Basic PlayerPawn properties
@@ -28,6 +18,16 @@ class SideScrollerPlayer : PlayerPawn
 		Player.DisplayName "Player";
 
 		// Custom side scroller player properties
+
+		// Player movement speed
+		SideScrollerPlayer.MoveSpeed 5.0;
+
+		// Player movement tightness
+		// Lower number for tighter movement
+		SideScrollerPlayer.MoveTightness 0.1;
+
+		// Initial jump strength
+		SideScrollerPlayer.JumpStrength 15.0;
 
 		// Analog horizontal movement
 		SideScrollerPlayer.AnalogMovement false;
@@ -47,12 +47,18 @@ class SideScrollerPlayer : PlayerPawn
 	bool isJumping, isFalling;
 	bool isCrouching;
 	int oldState;
+	double moveSpeed;
+	double moveTightness;
+	double jumpStrength;
 	bool analogMove;
 	bool variableJumping;
 	double spriteScale;
 
 	// Exposed properties
+	property MoveSpeed: moveSpeed;
+	property MoveTightness: moveTightness;
 	property AnalogMovement: analogMove;
+	property JumpStrength: jumpStrength;
 	property VariableJumping: variableJumping;
 	property SpriteScale: spriteScale;
 
@@ -160,18 +166,18 @@ class SideScrollerPlayer : PlayerPawn
 		if (sideInput < 0)
 		{
 			dir = DIR_Left;
-			normalizedSideInput = -PLAYER_MOVE_SPEED;
+			normalizedSideInput = -moveSpeed;
 		}
 		else if (sideInput > 0)
 		{
 			dir = DIR_Right;
-			normalizedSideInput = PLAYER_MOVE_SPEED;
+			normalizedSideInput = moveSpeed;
 		}
 
 		// apply analog movement
 		if (analogMove)
 		{
-			normalizedSideInput = PLAYER_MOVE_SPEED * sideInput / 10240.;
+			normalizedSideInput = moveSpeed * sideInput / 10240.;
 		}
 
 		// set the player's direction
@@ -185,7 +191,7 @@ class SideScrollerPlayer : PlayerPawn
 		}
 		else if (sideInput ~== 0)
 		{
-			vx *= PLAYER_DECELERATE;
+			vx *= moveTightness;
 		}
 
 		if (isCrouching) vx = 0;
@@ -199,7 +205,7 @@ class SideScrollerPlayer : PlayerPawn
 			&& !(GetPlayerInput(INPUT_OLDBUTTONS) & BT_JUMP))
 			&& OnFloor())
 		{
-			Vel.Z = PLAYER_JUMP_STRENGTH;
+			Vel.Z = jumpStrength;
 			isJumping = true;
 		}
 
