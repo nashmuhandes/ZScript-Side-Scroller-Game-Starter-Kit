@@ -7,15 +7,15 @@ class SideScrollerHandler : EventHandler
 
 	override void PlayerEntered(PlayerEvent e)
 	{
-		let p = SideScrollerPlayer(players[e.PlayerNumber].mo);
-		if (p)
+		let pmo = SideScrollerPlayer(players[e.PlayerNumber].mo);
+		if (pmo)
 		{
 			// set the player to totally frozen; we will customize the player
 			// movement from scratch
 			players[e.PlayerNumber].cheats |= CF_TOTALLYFROZEN;
 
 			// spawn the camera
-			p.SpawnCamera();
+			pmo.SpawnCamera();
 		}
 	}
 
@@ -24,15 +24,15 @@ class SideScrollerHandler : EventHandler
 	// when the player returns to this level
     override void WorldUnloaded(WorldEvent e)
     {
-		for (int pn = 0; pn < MAXPLAYERS; pn++)
+		for (int i = 0; i < MAXPLAYERS; i++)
 		{
-			if (playeringame[pn])
+			if (playeringame[i])
 			{
-				let p = SideScrollerPlayer(players[pn].mo);
-				if (p)
+				let pmo = SideScrollerPlayer(players[i].mo);
+				if (pmo)
 				{
 					// destroy the camera
-					p.DestroyCamera();
+					pmo.DestroyCamera();
 				}
 			}
 		}
