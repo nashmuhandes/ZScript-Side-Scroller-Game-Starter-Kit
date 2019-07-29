@@ -71,7 +71,7 @@ class SideScrollerPlayer : PlayerPawn
 	// Check if player is on the floor
 	bool OnFloor(void)
 	{
-		return Pos.Z == FloorZ || Vel.Z == 0 && bOnMObj;
+		return (Pos.Z <= FloorZ) || bOnMobj || bMBFBouncer || (player.cheats & CF_NOCLIP2);
 	}
 
 	// Get the player's movement speed
