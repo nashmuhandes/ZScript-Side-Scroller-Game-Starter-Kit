@@ -19,7 +19,6 @@ extend class SideScrollerPlayer
 		// retrieve player information
 		bool isOnfloor = OnFloor();
 		double pSpeed = GetMoveSpeed();
-		bool isCrouching = isCrouching;
 
 		// set direction
 		Scale.Y = spriteScale;
@@ -35,6 +34,7 @@ extend class SideScrollerPlayer
 		////////////////////////////////////////////////////////////////////////
 		//
 		// STATES
+		// Must be assigned in the exact order as EAnimationStates
 		//
 		////////////////////////////////////////////////////////////////////////
 		int StateToPlay;
