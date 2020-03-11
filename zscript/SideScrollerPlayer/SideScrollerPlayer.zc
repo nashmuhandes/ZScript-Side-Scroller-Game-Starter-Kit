@@ -9,36 +9,6 @@ const ANGLE_Right = 0.;
 
 class SideScrollerPlayer : PlayerPawn
 {
-	Default
-	{
-		// Basic PlayerPawn properties
-
-		Height 56.0;
-		MaxStepHeight 8;
-		Player.DisplayName "Player";
-
-		// Custom side scroller player properties
-
-		// Player movement speed
-		SideScrollerPlayer.MoveSpeed 5.0;
-
-		// Player movement tightness
-		// Lower number for tighter movement
-		SideScrollerPlayer.MoveTightness 0.1;
-
-		// Initial jump strength
-		SideScrollerPlayer.JumpStrength 15.0;
-
-		// Analog horizontal movement
-		SideScrollerPlayer.AnalogMovement false;
-
-		// Allow variable height jumping
-		SideScrollerPlayer.VariableJumping true;
-
-		// Player sprite scale. Use smaller numbers for higher resolution sprites
-		SideScrollerPlayer.SpriteScale 1.0;
-	}
-
 	// Internal variables
 	// Don't touch these unless you know what you're doing!
 	SideScrollerCamera cam;
@@ -68,55 +38,34 @@ class SideScrollerPlayer : PlayerPawn
 	//
 	//===========================================================================
 
-	// Check if player is on the floor
-	bool OnFloor(void)
+	Default
 	{
-		return (Pos.Z <= FloorZ) || bOnMobj || bMBFBouncer || (player.cheats & CF_NOCLIP2);
-	}
+		// Basic PlayerPawn properties
 
-	// Get the player's movement speed
-	double GetMoveSpeed(void)
-	{
-		return Vel.Length();
-	}
+		Height 56.0;
+		MaxStepHeight 8;
+		Player.DisplayName "Player";
 
-	// Determine crouching height for collision purposes
-	double GetCrouchHeight(void)
-	{
-		return Default.Height / 2;
-	}
+		// Custom side scroller player properties
 
-	//===========================================================================
-	//
-	//
-	//
-	//===========================================================================
+		// Player movement speed
+		SideScrollerPlayer.MoveSpeed 5.0;
 
-	void SpawnCamera(void)
-	{
-		// spawn camera
-		cam = SideScrollerCamera(Spawn("SideScrollerCamera", Pos, NO_REPLACE));
+		// Player movement tightness
+		// Lower number for tighter movement
+		SideScrollerPlayer.MoveTightness 0.1;
 
-		if (cam)
-		{
-			// tell the camera to track this player
-			cam.plr = self;
+		// Initial jump strength
+		SideScrollerPlayer.JumpStrength 15.0;
 
-			// change view to the camera
-			SetCamera(cam, false);
-		}
-		else
-		{
-			Console.Printf("WARNING: Failed to spawn the camera!");
-		}
-	}
+		// Analog horizontal movement
+		SideScrollerPlayer.AnalogMovement false;
 
-	void DestroyCamera(void)
-	{
-		if (cam)
-		{
-			cam.Destroy();
-		}
+		// Allow variable height jumping
+		SideScrollerPlayer.VariableJumping true;
+
+		// Player sprite scale. Use smaller numbers for higher resolution sprites
+		SideScrollerPlayer.SpriteScale 1.0;
 	}
 
 	//===========================================================================
@@ -249,17 +198,68 @@ class SideScrollerPlayer : PlayerPawn
 		A_SetSize(Radius, h, false);
 	}
 
-	//===========================================================================
-	//
-	//
-	//
-	//===========================================================================
-
 	override void Tick(void)
 	{
 		Super.Tick();
 
 		// run player animation states
 		AnimateSideScrollerPlayer();
+	}
+
+	//===========================================================================
+	//
+	//
+	//
+	//===========================================================================
+
+	// Check if player is on the floor
+	bool OnFloor(void)
+	{
+		return (Pos.Z <= FloorZ) || bOnMobj || bMBFBouncer || (player.cheats & CF_NOCLIP2);
+	}
+
+	// Get the player's movement speed
+	double GetMoveSpeed(void)
+	{
+		return Vel.Length();
+	}
+
+	// Determine crouching height for collision purposes
+	double GetCrouchHeight(void)
+	{
+		return Default.Height / 2;
+	}
+
+	//===========================================================================
+	//
+	//
+	//
+	//===========================================================================
+
+	void SpawnCamera(void)
+	{
+		// spawn camera
+		cam = SideScrollerCamera(Spawn("SideScrollerCamera", Pos, NO_REPLACE));
+
+		if (cam)
+		{
+			// tell the camera to track this player
+			cam.plr = self;
+
+			// change view to the camera
+			SetCamera(cam, false);
+		}
+		else
+		{
+			Console.Printf("WARNING: Failed to spawn the camera!");
+		}
+	}
+
+	void DestroyCamera(void)
+	{
+		if (cam)
+		{
+			cam.Destroy();
+		}
 	}
 }

@@ -8,6 +8,12 @@ class SideScrollerCamera : SecurityCamera
 	// the player to track/scroll to
 	SideScrollerPlayer plr;
 
+	//===========================================================================
+	//
+	//
+	//
+	//===========================================================================
+
 	override void Tick(void)
 	{
 		// position and point the camera to the player
