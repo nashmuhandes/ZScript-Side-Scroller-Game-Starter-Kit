@@ -157,6 +157,10 @@ class SideScrollerPlayer : PlayerPawn
 		{
 			isJumping = isFalling = false;
 		}
+		else
+		{
+			isFalling = true;
+		}
 
 		// LEFT/RIGHT MOVEMENT /////////////////////////////////////////////////
 

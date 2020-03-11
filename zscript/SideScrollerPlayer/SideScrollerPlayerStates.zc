@@ -5,6 +5,7 @@ enum EAnimationStates
 	ANIMSTATE_STAND,
 	ANIMSTATE_WALKING,
 	ANIMSTATE_JUMPING,
+	ANIMSTATE_FALLING,
 	ANIMSTATE_CROUCHING,
 	TOTAL_PLAYER_STATES
 }
@@ -43,7 +44,8 @@ extend class SideScrollerPlayer
 		stateName[1] = "Stand";
 		stateName[2] = "Walking";
 		stateName[3] = "Jumping";
-		stateName[4] = "Crouching";
+		stateName[4] = "Falling";
+		stateName[5] = "Crouching";
 
 		// standing still
 		if (isOnFloor && pSpeed <= moveThreshold)
@@ -57,10 +59,13 @@ extend class SideScrollerPlayer
 			StateToPlay = ANIMSTATE_WALKING;
 		}
 
-		// jump
+		// jumping and falling
 		if (!isOnFloor)
 		{
-			StateToPlay = ANIMSTATE_JUMPING;
+			if (isJumping)
+				StateToPlay = ANIMSTATE_JUMPING;
+			else if (isFalling)
+				StateToPlay = ANIMSTATE_FALLING;
 		}
 
 		// crouching
@@ -84,13 +89,18 @@ extend class SideScrollerPlayer
 		VKIL A -1;
 		Loop;
 	Walking:
-		VKIL BCDA 6;
+		VKIL BCDEFGHGFEDC 2;
 		Loop;
 	Jumping:
-		VKIL E -1;
+		VKIL IJ 3;
+		VKIL K -1;
+		Loop;
+	Falling:
+		VKIL LM 3;
+		VKIL N -1;
 		Loop;
 	Crouching:
-		VKIL F -1;
+		VKIL O -1;
 		Loop;
 	}
 }
