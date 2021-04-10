@@ -14,7 +14,18 @@ class SideScrollerHandler : EventHandler
 			pmo.SpawnCamera();
 		}
 	}
-
+	
+	
+	override void PlayerRespawned (PlayerEvent e) // spawn camera also when the player respawns
+	{
+		let pmo = SideScrollerPlayer(players[e.PlayerNumber].mo);
+		if (pmo)
+		{
+			// spawn the camera
+			pmo.SpawnCamera();
+		}
+	}
+	
 	// destroy the camera when this level is unloaded
 	// in the case of hub levels, we don't want to spawn extra cameras
 	// when the player returns to this level
